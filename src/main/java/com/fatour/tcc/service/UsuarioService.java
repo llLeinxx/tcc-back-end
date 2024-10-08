@@ -37,9 +37,9 @@ public class UsuarioService {
         if (usuarioOptional.isPresent()) {
             Usuario usuario = usuarioOptional.get();
             if (bCryptPasswordEncoder.matches(usuarioLoginRequestDTO.getPassword(), usuario.getPassword())){
-                return new UsuarioLoginResponseDTO("Login successfull");
+                return new UsuarioLoginResponseDTO(usuario.getId(),"Login successfull");
             }
         }
-        return new UsuarioLoginResponseDTO("Login failed");
+        return new UsuarioLoginResponseDTO(null,"Login failed");
     }
 }
