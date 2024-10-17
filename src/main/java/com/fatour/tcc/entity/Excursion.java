@@ -1,6 +1,7 @@
 package com.fatour.tcc.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -35,6 +36,7 @@ public class Excursion {
     @Column(name = "numberOfSeats", nullable = false)
     private int numberOfSeats;
 
+    @JsonIgnore
     @Column(name = "quantitySold", nullable = false)
     private int quantitySold;
 

@@ -30,7 +30,7 @@ public class ExcursionService {
         }
         excursion.setImage(Base64.getDecoder().decode(excursionDTO.getImage()));
         excursion.setNumberOfSeats(excursionDTO.getNumberOfSeats());
-        excursion.setQuantitySold(excursionDTO.getQuantitySold());
+        excursion.setQuantitySold(0);
 
         return excursionRepository.save(excursion);
     }
