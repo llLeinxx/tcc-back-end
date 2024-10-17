@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
+import java.util.List;
 
 @Service
 public class ExcursionService {
@@ -33,5 +34,9 @@ public class ExcursionService {
         excursion.setQuantitySold(0);
 
         return excursionRepository.save(excursion);
+    }
+
+    public List<Excursion> findAll() {
+        return excursionRepository.findAll();
     }
 }
