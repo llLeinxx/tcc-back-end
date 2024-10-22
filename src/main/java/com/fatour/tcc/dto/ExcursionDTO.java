@@ -1,5 +1,6 @@
 package com.fatour.tcc.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class ExcursionDTO {
@@ -19,6 +20,8 @@ public class ExcursionDTO {
     private int numberOfSeats;
 
     private int quantitySold;
+
+    private BigDecimal price;
 
     public Long getId() {
         return id;
@@ -82,5 +85,13 @@ public class ExcursionDTO {
 
     public void setQuantitySold(int quantitySold) {
         this.quantitySold = quantitySold;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

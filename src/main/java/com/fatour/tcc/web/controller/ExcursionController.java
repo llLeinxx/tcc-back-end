@@ -32,4 +32,10 @@ public class ExcursionController {
         List<Excursion> excursions = excursionService.findAll();
         return ResponseEntity.ok(excursions);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Excursion> delete(@PathVariable Long id) {
+        excursionService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

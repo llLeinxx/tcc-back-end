@@ -32,11 +32,16 @@ public class ExcursionService {
         excursion.setImage(Base64.getDecoder().decode(excursionDTO.getImage()));
         excursion.setNumberOfSeats(excursionDTO.getNumberOfSeats());
         excursion.setQuantitySold(0);
+        excursion.setPrice(excursionDTO.getPrice());
 
         return excursionRepository.save(excursion);
     }
 
     public List<Excursion> findAll() {
         return excursionRepository.findAll();
+    }
+
+    public void delete(Long id) {
+        excursionRepository.deleteById(id);
     }
 }

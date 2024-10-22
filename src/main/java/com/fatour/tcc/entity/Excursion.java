@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -40,10 +41,13 @@ public class Excursion {
     @Column(name = "quantitySold", nullable = false)
     private int quantitySold;
 
+    @Column(name = "price")
+    private BigDecimal price;
+
     public Excursion() {
     }
 
-    public Excursion(Long id, String description, String location, LocalDateTime going, LocalDateTime back, byte[] image, int numberOfSeats, int quantitySold) {
+    public Excursion(Long id, String description, String location, LocalDateTime going, LocalDateTime back, byte[] image, int numberOfSeats, int quantitySold, BigDecimal price) {
         this.id = id;
         this.description = description;
         this.location = location;
@@ -52,6 +56,7 @@ public class Excursion {
         this.image = image;
         this.numberOfSeats = numberOfSeats;
         this.quantitySold = quantitySold;
+        this.price = price;
     }
 
     public Long getId() {
@@ -116,6 +121,14 @@ public class Excursion {
 
     public void setQuantitySold(int quantitySold) {
         this.quantitySold = quantitySold;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     @Override
