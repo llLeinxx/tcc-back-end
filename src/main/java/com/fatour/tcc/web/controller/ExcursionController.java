@@ -38,4 +38,10 @@ public class ExcursionController {
         excursionService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Excursion> findById(@PathVariable Long id) {
+        Excursion excursion = excursionService.findById(id);
+        return ResponseEntity.ok(excursion);
+    }
 }

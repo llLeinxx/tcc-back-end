@@ -44,4 +44,8 @@ public class ExcursionService {
     public void delete(Long id) {
         excursionRepository.deleteById(id);
     }
+
+    public Excursion findById(Long id) {
+        return excursionRepository.findById(id).get();
+    }
 }
