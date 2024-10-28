@@ -7,7 +7,7 @@ public class SeatDTO {
     private String cpf;
     private String email;
     private String name;
-    private Long telephone;
+    private String telephone;
     private Long excursionId;
     private Long usuarioId;
 
@@ -51,11 +51,11 @@ public class SeatDTO {
         this.name = name;
     }
 
-    public Long getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(Long telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 

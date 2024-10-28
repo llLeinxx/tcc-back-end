@@ -27,7 +27,7 @@ public class Seat {
     private String name;
 
     @Column(name = "telephone")
-    private Long telephone;
+    private String telephone;
 
     @ManyToOne
     @JoinColumn(name = "excursion_id", nullable = false)
@@ -40,7 +40,7 @@ public class Seat {
     public Seat() {
     }
 
-    public Seat(Long id, int seatNumber, String cpf, String email, String name, Long telephone, Excursion excursion, Usuario usuario) {
+    public Seat(Long id, int seatNumber, String cpf, String email, String name, String telephone, Excursion excursion, Usuario usuario) {
         this.id = id;
         this.seatNumber = seatNumber;
         this.cpf = cpf;
@@ -99,11 +99,11 @@ public class Seat {
         this.name = name;
     }
 
-    public Long getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(Long telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 
