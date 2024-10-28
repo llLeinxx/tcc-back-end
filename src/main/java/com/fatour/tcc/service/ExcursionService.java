@@ -1,8 +1,17 @@
 package com.fatour.tcc.service;
 
 import com.fatour.tcc.dto.ExcursionDTO;
+import com.fatour.tcc.dto.PaymentDTO;
+import com.fatour.tcc.dto.SeatDTO;
 import com.fatour.tcc.entity.Excursion;
+import com.fatour.tcc.entity.Payment;
+import com.fatour.tcc.entity.Seat;
+import com.fatour.tcc.entity.Usuario;
 import com.fatour.tcc.reporitory.ExcursionRepository;
+import com.fatour.tcc.reporitory.PaymentRepository;
+import com.fatour.tcc.reporitory.SeatRepository;
+import com.fatour.tcc.reporitory.UsuarioRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +23,12 @@ public class ExcursionService {
 
     @Autowired
     private ExcursionRepository excursionRepository;
+    @Autowired
+    private PaymentRepository paymentRepository;
+    @Autowired
+    private SeatRepository seatRepository;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public Excursion insert(ExcursionDTO excursionDTO) {
         Excursion excursion = new Excursion();
@@ -47,5 +62,33 @@ public class ExcursionService {
 
     public Excursion findById(Long id) {
         return excursionRepository.findById(id).get();
+    }
+
+    @Transactional
+    public void savePayment(PaymentDTO paymentDTO) {
+        Excursion excursion = excursionRepository.findById(paymentDTO.getExcursionId()).orElseThrow(() -> new RuntimeException("Evento não encontrado"));
+        Usuario usuario = usuarioRepository.findById(paymentDTO.getUsuarioId()).orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
+
+        Payment payment = new Payment();
+        payment.setCvv(paymentDTO.getCvv());
+        payment.setExcursion(excursion);
+        payment.setNumber(paymentDTO.getNumber());
+        payment.setValidity(paymentDTO.getValidity());
+        payment.setName(paymentDTO.getName());
+        payment.setUsuario(usuario);
+        paymentRepository.save(payment);
+
+        List<SeatDTO> seatsDTO = paymentDTO.getSeats();
+        for (SeatDTO seatDTO : seatsDTO) {
+            Seat seat = new Seat();
+            seat.setSeatNumber(seatDTO.getSeatNumber());
+            seat.setCpf(seatDTO.getCpf());
+            seat.setEmail(seatDTO.getEmail());
+            seat.setName(seatDTO.getName());
+            seat.setTelephone(seatDTO.getTelephone());
+            seat.setExcursion(excursion);
+            seat.setUsuario(usuario);
+            seatRepository.save(seat);
+        }
     }
 }

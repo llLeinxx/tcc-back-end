@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -30,6 +32,14 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false, length = 25)
     private RoleUsuario role;
+
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Payment> payments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Seat> seats = new ArrayList<>();
+
 
     public Usuario() {
     }

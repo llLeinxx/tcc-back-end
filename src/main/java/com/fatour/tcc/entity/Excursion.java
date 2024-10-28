@@ -7,7 +7,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
 
 @Entity
 @Table(name = "excursions")
@@ -43,6 +46,12 @@ public class Excursion {
 
     @Column(name = "price")
     private BigDecimal price;
+
+    @OneToMany(mappedBy = "excursion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Payment> payments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "excursion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Seat> seats = new ArrayList<>();
 
     public Excursion() {
     }
