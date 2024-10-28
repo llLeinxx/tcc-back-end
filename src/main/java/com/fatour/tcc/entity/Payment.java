@@ -3,7 +3,6 @@ package com.fatour.tcc.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -16,16 +15,16 @@ public class Payment {
     private Long id;
 
     @Column(name = "cvv")
-    private int cvv;
+    private String cvv;
 
     @ManyToOne
     private Excursion excursion;
 
     @Column(name = "number")
-    private int number;
+    private String number;
 
     @Column (name = "validity")
-    private Date validity;
+    private String validity;
 
     @Column(name = "name")
     private String name;
@@ -36,7 +35,7 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(Long id, int cvv, Excursion excursion, int number, Date validity, String name, Usuario usuario) {
+    public Payment(Long id, String cvv, Excursion excursion, String number, String validity, String name, Usuario usuario) {
         this.id = id;
         this.cvv = cvv;
         this.excursion = excursion;
@@ -54,11 +53,11 @@ public class Payment {
         this.id = id;
     }
 
-    public int getCvv() {
+    public String getCvv() {
         return cvv;
     }
 
-    public void setCvv(int cvv) {
+    public void setCvv(String cvv) {
         this.cvv = cvv;
     }
 
@@ -70,19 +69,19 @@ public class Payment {
         this.excursion = excursion;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
-    public Date getValidity() {
+    public String getValidity() {
         return validity;
     }
 
-    public void setValidity(Date validity) {
+    public void setValidity(String validity) {
         this.validity = validity;
     }
 

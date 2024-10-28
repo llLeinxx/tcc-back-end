@@ -1,19 +1,14 @@
 package com.fatour.tcc.dto;
 
-import com.fatour.tcc.entity.Excursion;
-import com.fatour.tcc.entity.Usuario;
-import jakarta.persistence.*;
-
-import java.util.Date;
 import java.util.List;
 
 public class PaymentDTO {
 
     private Long id;
-    private int cvv;
+    private String cvv;
     private Long excursionId;
-    private int number;
-    private Date validity;
+    private String number;
+    private String validity;
     private String name;
     private Long usuarioId;
     private List<SeatDTO> seats;
@@ -26,11 +21,11 @@ public class PaymentDTO {
         this.id = id;
     }
 
-    public int getCvv() {
+    public String getCvv() {
         return cvv;
     }
 
-    public void setCvv(int cvv) {
+    public void setCvv(String cvv) {
         this.cvv = cvv;
     }
 
@@ -42,19 +37,19 @@ public class PaymentDTO {
         this.excursionId = excursionId;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
-    public Date getValidity() {
+    public String getValidity() {
         return validity;
     }
 
-    public void setValidity(Date validity) {
+    public void setValidity(String validity) {
         this.validity = validity;
     }
 
