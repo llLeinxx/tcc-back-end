@@ -3,6 +3,7 @@ package com.fatour.tcc.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -32,10 +33,13 @@ public class Payment {
     @ManyToOne
     private Usuario usuario;
 
+    @JoinColumn(name = "date")
+    private LocalDateTime date;
+
     public Payment() {
     }
 
-    public Payment(Long id, String cvv, Excursion excursion, String number, String validity, String name, Usuario usuario) {
+    public Payment(Long id, String cvv, Excursion excursion, String number, String validity, String name, Usuario usuario, LocalDateTime date) {
         this.id = id;
         this.cvv = cvv;
         this.excursion = excursion;
@@ -43,6 +47,7 @@ public class Payment {
         this.validity = validity;
         this.name = name;
         this.usuario = usuario;
+        this.date = date;
     }
 
     public Long getId() {
@@ -99,6 +104,14 @@ public class Payment {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime data) {
+        this.date = data;
     }
 
     @Override

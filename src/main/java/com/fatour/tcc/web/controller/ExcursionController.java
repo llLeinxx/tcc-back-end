@@ -4,6 +4,7 @@ package com.fatour.tcc.web.controller;
 import com.fatour.tcc.dto.ExcursionDTO;
 import com.fatour.tcc.dto.PaymentDTO;
 import com.fatour.tcc.entity.Excursion;
+import com.fatour.tcc.entity.Payment;
 import com.fatour.tcc.service.ExcursionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.List;
 public class ExcursionController {
 
     private ExcursionService excursionService;
+
 
     public ExcursionController(ExcursionService excursionService) {
         this.excursionService = excursionService;
@@ -51,4 +53,11 @@ public class ExcursionController {
         excursionService.savePayment(paymentDTO);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/payment/{id}")
+    public ResponseEntity<Payment> findByIdPayment(@PathVariable Long id) {
+        Payment payment = excursionService.findByIdPayment(id);
+        return ResponseEntity.ok(payment);
+    }
+
 }

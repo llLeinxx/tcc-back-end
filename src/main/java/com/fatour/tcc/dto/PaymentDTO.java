@@ -1,5 +1,7 @@
 package com.fatour.tcc.dto;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class PaymentDTO {
@@ -12,6 +14,7 @@ public class PaymentDTO {
     private String name;
     private Long usuarioId;
     private List<SeatDTO> seats;
+    private LocalDate date;
 
     public Long getId() {
         return id;
@@ -75,5 +78,13 @@ public class PaymentDTO {
 
     public void setSeats(List<SeatDTO> seats) {
         this.seats = seats;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }

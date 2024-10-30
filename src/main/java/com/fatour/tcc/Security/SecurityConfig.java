@@ -17,7 +17,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/api/usuarios", "api/usuarios/login", "/api/excursions", "/api/excursions/{id}","/api/excursions/payments").permitAll()
+                                .requestMatchers("/api/usuarios", "api/usuarios/login", "/api/excursions", "/api/excursions/{id}","/api/excursions/payments","/api/excursions/payment/{id}").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .csrf(AbstractHttpConfigurer::disable);

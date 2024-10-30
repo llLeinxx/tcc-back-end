@@ -3,6 +3,7 @@ package com.fatour.tcc.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -36,6 +37,7 @@ public class Seat {
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
+
 
     public Seat() {
     }
@@ -114,6 +116,7 @@ public class Seat {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
 
     @Override
     public boolean equals(Object o) {

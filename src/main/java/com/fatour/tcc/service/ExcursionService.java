@@ -15,6 +15,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.List;
 
@@ -64,20 +65,33 @@ public class ExcursionService {
         return excursionRepository.findById(id).get();
     }
 
+    public Payment findByIdPayment(Long id) {
+        return paymentRepository.findById(id).orElse(null);
+    }
+
     @Transactional
     public void savePayment(PaymentDTO paymentDTO) {
         Excursion excursion = excursionRepository.findById(paymentDTO.getExcursionId()).orElseThrow(() -> new RuntimeException("Evento não encontrado"));
         Usuario usuario = usuarioRepository.findById(paymentDTO.getUsuarioId()).orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
 
+        LocalDateTime dataHoraAtual = LocalDateTime.now();
+
         Payment payment = new Payment();
+
         payment.setCvv(paymentDTO.getCvv());
         payment.setExcursion(excursion);
         payment.setNumber(paymentDTO.getNumber());
         payment.setValidity(paymentDTO.getValidity());
         payment.setName(paymentDTO.getName());
         payment.setUsuario(usuario);
+        payment.setDate(dataHoraAtual);
         paymentRepository.save(payment);
 
+        for (SeatDTO assentoDTO : paymentDTO.getSeats()) {
+            if (seatRepository.existsByExcursionAndSeatNumber(excursion, assentoDTO.getSeatNumber())) {
+                throw new RuntimeException("Cadeira " + assentoDTO.getSeatNumber() + " já está ocupada para este evento");
+            }
+        }
         List<SeatDTO> seatsDTO = paymentDTO.getSeats();
         for (SeatDTO seatDTO : seatsDTO) {
             Seat seat = new Seat();
