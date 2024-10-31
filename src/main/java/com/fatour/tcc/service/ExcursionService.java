@@ -69,10 +69,15 @@ public class ExcursionService {
         return paymentRepository.findById(id).orElse(null);
     }
 
+    public List<Payment> findPaymentByUsuarioId(Long userID) {
+        Usuario usuario = usuarioRepository.findById(userID).orElseThrow(()-> new RuntimeException("User not found"));
+        return paymentRepository.findByUsuario(usuario);
+    }
+
     @Transactional
     public void savePayment(PaymentDTO paymentDTO) {
-        Excursion excursion = excursionRepository.findById(paymentDTO.getExcursionId()).orElseThrow(() -> new RuntimeException("Evento não encontrado"));
-        Usuario usuario = usuarioRepository.findById(paymentDTO.getUsuarioId()).orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
+        Excursion excursion = excursionRepository.findById(paymentDTO.getExcursionId()).orElseThrow(() -> new RuntimeException("tour not found"));
+        Usuario usuario = usuarioRepository.findById(paymentDTO.getUsuarioId()).orElseThrow(() -> new RuntimeException("User not found"));
 
         LocalDateTime dataHoraAtual = LocalDateTime.now();
 

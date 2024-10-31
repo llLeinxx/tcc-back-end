@@ -60,4 +60,10 @@ public class ExcursionController {
         return ResponseEntity.ok(payment);
     }
 
+    @GetMapping("/{usuarioId}/payment")
+    public ResponseEntity<List<Payment>> findPaymentByUsuarioId(@PathVariable Long usuarioId) {
+        List<Payment> payments = excursionService.findPaymentByUsuarioId(usuarioId);
+        return ResponseEntity.ok(payments);
+    }
+
 }
