@@ -94,7 +94,7 @@ public class ExcursionService {
 
         for (SeatDTO assentoDTO : paymentDTO.getSeats()) {
             if (seatRepository.existsByExcursionAndSeatNumber(excursion, assentoDTO.getSeatNumber())) {
-                throw new RuntimeException("Cadeira " + assentoDTO.getSeatNumber() + " já está ocupada para este evento");
+                throw new RuntimeException("assento " + assentoDTO.getSeatNumber() + " já está ocupada");
             }
         }
         List<SeatDTO> seatsDTO = paymentDTO.getSeats();
