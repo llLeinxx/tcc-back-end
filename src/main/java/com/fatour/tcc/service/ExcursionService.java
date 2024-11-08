@@ -74,6 +74,11 @@ public class ExcursionService {
         return paymentRepository.findByUsuario(usuario);
     }
 
+    public List<Seat> findSeatByExcursionId(Long ExcursionID) {
+        Excursion excursion = excursionRepository.findById(ExcursionID).orElseThrow(()-> new RuntimeException("Excursion not found"));
+        return seatRepository.findByExcursion(excursion);
+    }
+
     @Transactional
     public void savePayment(PaymentDTO paymentDTO) {
         Excursion excursion = excursionRepository.findById(paymentDTO.getExcursionId()).orElseThrow(() -> new RuntimeException("tour not found"));

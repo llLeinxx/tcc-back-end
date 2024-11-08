@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/usuarios")
 @CrossOrigin(origins = "http://127.0.0.1:5500")
@@ -36,4 +38,5 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(usuarioLoginResponseDTO);
         }
     }
+
 }

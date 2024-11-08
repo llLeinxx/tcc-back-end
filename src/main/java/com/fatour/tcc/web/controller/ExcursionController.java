@@ -5,6 +5,7 @@ import com.fatour.tcc.dto.ExcursionDTO;
 import com.fatour.tcc.dto.PaymentDTO;
 import com.fatour.tcc.entity.Excursion;
 import com.fatour.tcc.entity.Payment;
+import com.fatour.tcc.entity.Seat;
 import com.fatour.tcc.service.ExcursionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -64,6 +65,12 @@ public class ExcursionController {
     public ResponseEntity<List<Payment>> findPaymentByUsuarioId(@PathVariable Long usuarioId) {
         List<Payment> payments = excursionService.findPaymentByUsuarioId(usuarioId);
         return ResponseEntity.ok(payments);
+    }
+
+    @GetMapping("/{excursionId}/seat")
+    public ResponseEntity<List<Seat>> findSeatByExcursionId(@PathVariable Long excursionId) {
+        List<Seat> seats = excursionService.findSeatByExcursionId(excursionId);
+        return ResponseEntity.ok(seats);
     }
 
 }
