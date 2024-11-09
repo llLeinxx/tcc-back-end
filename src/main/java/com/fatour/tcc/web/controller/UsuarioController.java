@@ -1,6 +1,7 @@
 package com.fatour.tcc.web.controller;
 
 
+import com.fatour.tcc.dto.SeatDTO;
 import com.fatour.tcc.dto.UsuarioDTO;
 import com.fatour.tcc.dto.UsuarioLoginRequestDTO;
 import com.fatour.tcc.dto.UsuarioLoginResponseDTO;
@@ -39,4 +40,10 @@ public class UsuarioController {
         }
     }
 
+
+    @GetMapping("/{usuarioId}/seat")
+    public ResponseEntity<List<SeatDTO>> findSeatByExcursionId(@PathVariable Long usuarioId) {
+        List<SeatDTO> seats = usuarioService.findSeatByUsuarioId(usuarioId);
+        return ResponseEntity.ok(seats);
+    }
 }

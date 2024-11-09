@@ -17,7 +17,10 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/api/usuarios", "api/usuarios/login", "/api/excursions", "/api/excursions/{id}","/api/excursions/payments","/api/excursions/payment/{id}","/api/excursions/{usuarioId}/payment","/api/excursions/{excursionId}/seat").permitAll()
+                                .requestMatchers("/api/usuarios", "api/usuarios/login", "/api/excursions", "/api/excursions/{id}"
+                                        ,"/api/excursions/payments","/api/excursions/payment/{id}","/api/excursions/{usuarioId}/payment"
+                                        ,"/api/excursions/{excursionId}/seat", "/api/usuarios/{usuarioId}/seat").permitAll()
+
                                 .anyRequest().authenticated()
                 )
                 .csrf(AbstractHttpConfigurer::disable);

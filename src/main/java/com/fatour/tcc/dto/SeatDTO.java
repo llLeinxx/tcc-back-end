@@ -11,6 +11,21 @@ public class SeatDTO {
     private Long excursionId;
     private Long usuarioId;
 
+
+    public SeatDTO() {
+    }
+
+    public SeatDTO(Long id, String seatNumber, String cpf, String email, String name, String telephone, Long excursionId, Long usuarioId) {
+        this.id = id;
+        this.seatNumber = seatNumber;
+        this.cpf = cpf;
+        this.email = email;
+        this.name = name;
+        this.telephone = telephone;
+        this.excursionId = excursionId;
+        this.usuarioId = usuarioId;
+    }
+
     public Long getId() {
         return id;
     }

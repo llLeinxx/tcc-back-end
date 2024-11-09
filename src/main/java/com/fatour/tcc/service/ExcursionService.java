@@ -74,9 +74,8 @@ public class ExcursionService {
         return paymentRepository.findByUsuario(usuario);
     }
 
-    public List<Seat> findSeatByExcursionId(Long ExcursionID) {
-        Excursion excursion = excursionRepository.findById(ExcursionID).orElseThrow(()-> new RuntimeException("Excursion not found"));
-        return seatRepository.findByExcursion(excursion);
+    public List<SeatDTO> findSeatByExcursionId(Long excursionID) {
+        return seatRepository.findByExcursion(excursionID);
     }
 
     @Transactional

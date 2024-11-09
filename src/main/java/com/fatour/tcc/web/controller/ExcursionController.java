@@ -3,6 +3,7 @@ package com.fatour.tcc.web.controller;
 
 import com.fatour.tcc.dto.ExcursionDTO;
 import com.fatour.tcc.dto.PaymentDTO;
+import com.fatour.tcc.dto.SeatDTO;
 import com.fatour.tcc.entity.Excursion;
 import com.fatour.tcc.entity.Payment;
 import com.fatour.tcc.entity.Seat;
@@ -68,8 +69,8 @@ public class ExcursionController {
     }
 
     @GetMapping("/{excursionId}/seat")
-    public ResponseEntity<List<Seat>> findSeatByExcursionId(@PathVariable Long excursionId) {
-        List<Seat> seats = excursionService.findSeatByExcursionId(excursionId);
+    public ResponseEntity<List<SeatDTO>> findSeatByExcursionId(@PathVariable Long excursionId) {
+        List<SeatDTO> seats = excursionService.findSeatByExcursionId(excursionId);
         return ResponseEntity.ok(seats);
     }
 
