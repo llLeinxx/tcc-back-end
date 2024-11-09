@@ -3,7 +3,6 @@ package com.fatour.tcc.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -16,7 +15,7 @@ public class Seat {
     private Long id;
 
     @Column(name = "seatNumber")
-    private int seatNumber;
+    private String seatNumber;
 
     @Column(name = "cpf")
     private String cpf;
@@ -42,7 +41,7 @@ public class Seat {
     public Seat() {
     }
 
-    public Seat(Long id, int seatNumber, String cpf, String email, String name, String telephone, Excursion excursion, Usuario usuario) {
+    public Seat(Long id, String seatNumber, String cpf, String email, String name, String telephone, Excursion excursion, Usuario usuario) {
         this.id = id;
         this.seatNumber = seatNumber;
         this.cpf = cpf;
@@ -61,11 +60,11 @@ public class Seat {
         this.id = id;
     }
 
-    public int getSeatNumber() {
+    public String getSeatNumber() {
         return seatNumber;
     }
 
-    public void setSeatNumber(int seatNumber) {
+    public void setSeatNumber(String seatNumber) {
         this.seatNumber = seatNumber;
     }
 

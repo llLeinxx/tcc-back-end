@@ -3,7 +3,7 @@ package com.fatour.tcc.dto;
 public class SeatDTO {
 
     private Long id;
-    private int seatNumber;
+    private String seatNumber;
     private String cpf;
     private String email;
     private String name;
@@ -19,11 +19,11 @@ public class SeatDTO {
         this.id = id;
     }
 
-    public int getSeatNumber() {
+    public String getSeatNumber() {
         return seatNumber;
     }
 
-    public void setSeatNumber(int seatNumber) {
+    public void setSeatNumber(String seatNumber) {
         this.seatNumber = seatNumber;
     }
 
