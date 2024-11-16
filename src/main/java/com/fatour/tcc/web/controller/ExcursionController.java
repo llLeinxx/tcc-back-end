@@ -19,7 +19,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://127.0.0.1:5500")
 public class ExcursionController {
 
-    private ExcursionService excursionService;
+    private final ExcursionService excursionService;
 
 
     public ExcursionController(ExcursionService excursionService) {

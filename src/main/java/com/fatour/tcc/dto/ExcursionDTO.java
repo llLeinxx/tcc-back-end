@@ -17,7 +17,7 @@ public class ExcursionDTO {
 
     private String image;
 
-    private int numberOfSeats;
+    private String numberOfSeats;
 
     private int quantitySold;
 
@@ -71,11 +71,11 @@ public class ExcursionDTO {
         this.image = image;
     }
 
-    public int getNumberOfSeats() {
+    public String getNumberOfSeats() {
         return numberOfSeats;
     }
 
-    public void setNumberOfSeats(int numberOfSeats) {
+    public void setNumberOfSeats(String numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
     }
 

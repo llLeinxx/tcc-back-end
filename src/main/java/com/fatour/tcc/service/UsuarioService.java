@@ -5,6 +5,7 @@ import com.fatour.tcc.dto.UsuarioDTO;
 import com.fatour.tcc.dto.UsuarioLoginRequestDTO;
 import com.fatour.tcc.dto.UsuarioLoginResponseDTO;
 import com.fatour.tcc.entity.Excursion;
+import com.fatour.tcc.entity.Seat;
 import com.fatour.tcc.entity.Usuario;
 import com.fatour.tcc.reporitory.ExcursionRepository;
 import com.fatour.tcc.reporitory.PaymentRepository;
@@ -54,7 +55,7 @@ public class UsuarioService {
         return new UsuarioLoginResponseDTO(null,"Login failed");
     }
 
-    public List<SeatDTO> findSeatByUsuarioId(Long usuarioId) {
+    public List<Seat> findSeatByUsuarioId(Long usuarioId) {
         return seatRepository.findByUsuario(usuarioId);
     }
 

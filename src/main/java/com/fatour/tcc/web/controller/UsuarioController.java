@@ -5,8 +5,11 @@ import com.fatour.tcc.dto.SeatDTO;
 import com.fatour.tcc.dto.UsuarioDTO;
 import com.fatour.tcc.dto.UsuarioLoginRequestDTO;
 import com.fatour.tcc.dto.UsuarioLoginResponseDTO;
+import com.fatour.tcc.entity.Seat;
 import com.fatour.tcc.entity.Usuario;
+import com.fatour.tcc.service.ExcursionService;
 import com.fatour.tcc.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +22,9 @@ import java.util.List;
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
+
+    @Autowired
+    private ExcursionService excursionService;
 
     public UsuarioController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
@@ -42,8 +48,7 @@ public class UsuarioController {
 
 
     @GetMapping("/{usuarioId}/seat")
-    public ResponseEntity<List<SeatDTO>> findSeatByExcursionId(@PathVariable Long usuarioId) {
-        List<SeatDTO> seats = usuarioService.findSeatByUsuarioId(usuarioId);
-        return ResponseEntity.ok(seats);
+    public List<Seat> findSeatByUsuarioId(@PathVariable Long usuarioId) {
+        return usuarioService.findSeatByUsuarioId(usuarioId);
     }
 }

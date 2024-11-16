@@ -38,7 +38,7 @@ public class Excursion {
     private byte[] image;
 
     @Column(name = "numberOfSeats", nullable = false)
-    private int numberOfSeats;
+    private String numberOfSeats;
 
     @JsonIgnore
     @Column(name = "quantitySold", nullable = false)
@@ -56,7 +56,7 @@ public class Excursion {
     public Excursion() {
     }
 
-    public Excursion(Long id, String description, String location, LocalDateTime going, LocalDateTime back, byte[] image, int numberOfSeats, int quantitySold, BigDecimal price) {
+    public Excursion(Long id, String description, String location, LocalDateTime going, LocalDateTime back, byte[] image, String numberOfSeats, int quantitySold, BigDecimal price) {
         this.id = id;
         this.description = description;
         this.location = location;
@@ -116,11 +116,11 @@ public class Excursion {
         this.image = image;
     }
 
-    public int getNumberOfSeats() {
+    public String getNumberOfSeats() {
         return numberOfSeats;
     }
 
-    public void setNumberOfSeats(int numberOfSeats) {
+    public void setNumberOfSeats(String numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
     }
 

@@ -18,6 +18,6 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
     @Query("SELECT new com.fatour.tcc.dto.SeatDTO(s.id, s.seatNumber, s.cpf, s.email, s.name, s.telephone, s.excursion.id, s.usuario.id) " + "FROM Seat s WHERE s.excursion.id = :excursionId")
     List<SeatDTO> findByExcursion(@Param("excursionId") Long excursionId);
 
-    @Query("SELECT new com.fatour.tcc.dto.SeatDTO(s.id, s.seatNumber, s.cpf, s.email, s.name, s.telephone, s.excursion.id, s.usuario.id) " + "FROM Seat s WHERE s.usuario.id = :usuarioId")
-    List<SeatDTO> findByUsuario(@Param("usuarioId") Long usuarioId);
+    @Query("SELECT s FROM Seat s JOIN FETCH s.excursion e WHERE s.usuario.id = :userId")
+    List<Seat> findByUsuario(@Param("userId") Long usuarioId);
 }
