@@ -3,6 +3,7 @@ package com.fatour.tcc.service;
 import com.fatour.tcc.dto.ExcursionDTO;
 import com.fatour.tcc.dto.PaymentDTO;
 import com.fatour.tcc.dto.SeatDTO;
+import com.fatour.tcc.dto.SeatResponseDTO;
 import com.fatour.tcc.entity.Excursion;
 import com.fatour.tcc.entity.Payment;
 import com.fatour.tcc.entity.Seat;
@@ -76,6 +77,10 @@ public class ExcursionService {
 
     public List<SeatDTO> findSeatByExcursionId(Long excursionID) {
         return seatRepository.findByExcursion(excursionID);
+    }
+
+    public List<SeatResponseDTO> findSeatNumberByExcursionId(Long excursionId) {
+        return seatRepository.findSeatNumberByExcursionId(excursionId);
     }
 
     @Transactional

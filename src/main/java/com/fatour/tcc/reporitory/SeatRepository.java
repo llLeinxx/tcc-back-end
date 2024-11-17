@@ -1,6 +1,7 @@
 package com.fatour.tcc.reporitory;
 
 import com.fatour.tcc.dto.SeatDTO;
+import com.fatour.tcc.dto.SeatResponseDTO;
 import com.fatour.tcc.entity.Excursion;
 import com.fatour.tcc.entity.Seat;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +21,7 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
 
     @Query("SELECT s FROM Seat s JOIN FETCH s.excursion e WHERE s.usuario.id = :userId")
     List<Seat> findByUsuario(@Param("userId") Long usuarioId);
+
+    @Query("SELECT new com.fatour.tcc.dto.SeatResponseDTO(s.seatNumber)" + "FROM  Seat s WHERE s.excursion.id = :excursionId")
+    List<SeatResponseDTO> findSeatNumberByExcursionId(@Param("excursionId") Long excursionId);
 }

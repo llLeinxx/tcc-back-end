@@ -19,7 +19,7 @@ public class SecurityConfig {
                         authorizeRequests
                                 .requestMatchers("/api/usuarios", "api/usuarios/login", "/api/excursions", "/api/excursions/{id}"
                                         ,"/api/excursions/payments","/api/excursions/payment/{id}","/api/excursions/{usuarioId}/payment"
-                                        ,"/api/excursions/{excursionId}/seat", "/api/usuarios/{usuarioId}/seat").permitAll()
+                                        ,"/api/excursions/{excursionId}/seat", "/api/usuarios/{usuarioId}/seat", "/api/excursions/{excursionId}/seatNumber").permitAll()
 
                                 .anyRequest().authenticated()
                 )
