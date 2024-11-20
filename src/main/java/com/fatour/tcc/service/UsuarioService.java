@@ -61,19 +61,15 @@ public class UsuarioService {
 
 
     public List<UserDetailsDTO> getPaymentDetailsByUser (Long usuarioId) {
+
         return usuarioRepository.findById(usuarioId)
                 .map(usuario -> usuario.getPayments().stream()
                         .map(payment -> {
-                            Seat seat = payment.getUsuario().getSeats().stream()
-                                    .filter(s -> s.getExcursion() != null)
-                                    .findFirst()
-                                    .orElse(null);
+                            Excursion excursion = payment.getExcursion();
 
-                            if (seat == null || seat.getExcursion() == null) {
+                            if (excursion == null) {
                                 return null;
                             }
-
-                            Excursion excursion = seat.getExcursion();
 
                             return new UserDetailsDTO(
                                     payment.getId(),
@@ -83,10 +79,9 @@ public class UsuarioService {
                                     excursion.getBack()
                             );
                         })
-                        .filter(dto -> dto != null) // Remove valores nulos
+                        .filter(dto -> dto != null)
                         .collect(Collectors.toList()))
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
-
 
 }
