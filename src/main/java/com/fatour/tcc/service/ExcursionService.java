@@ -96,7 +96,7 @@ public class ExcursionService {
         payment.setExcursion(excursion);
         payment.setNumber(paymentDTO.getNumber());
         payment.setValidity(paymentDTO.getValidity());
-        payment.setName(paymentDTO.getName());
+        payment.setPaymentName(paymentDTO.getName());
         payment.setUsuario(usuario);
         payment.setDate(dataHoraAtual);
         paymentRepository.save(payment);

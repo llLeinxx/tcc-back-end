@@ -1,10 +1,8 @@
 package com.fatour.tcc.service;
 
-import com.fatour.tcc.dto.SeatDTO;
-import com.fatour.tcc.dto.UsuarioDTO;
-import com.fatour.tcc.dto.UsuarioLoginRequestDTO;
-import com.fatour.tcc.dto.UsuarioLoginResponseDTO;
+import com.fatour.tcc.dto.*;
 import com.fatour.tcc.entity.Excursion;
+import com.fatour.tcc.entity.Payment;
 import com.fatour.tcc.entity.Seat;
 import com.fatour.tcc.entity.Usuario;
 import com.fatour.tcc.reporitory.ExcursionRepository;
@@ -16,8 +14,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {
@@ -58,5 +58,35 @@ public class UsuarioService {
     public List<Seat> findSeatByUsuarioId(Long usuarioId) {
         return seatRepository.findByUsuario(usuarioId);
     }
+
+
+    public List<UserDetailsDTO> getPaymentDetailsByUser (Long usuarioId) {
+        return usuarioRepository.findById(usuarioId)
+                .map(usuario -> usuario.getPayments().stream()
+                        .map(payment -> {
+                            Seat seat = payment.getUsuario().getSeats().stream()
+                                    .filter(s -> s.getExcursion() != null)
+                                    .findFirst()
+                                    .orElse(null);
+
+                            if (seat == null || seat.getExcursion() == null) {
+                                return null;
+                            }
+
+                            Excursion excursion = seat.getExcursion();
+
+                            return new UserDetailsDTO(
+                                    payment.getId(),
+                                    payment.getDate().toLocalDate(),
+                                    excursion.getLocation(),
+                                    excursion.getGoing(),
+                                    excursion.getBack()
+                            );
+                        })
+                        .filter(dto -> dto != null) // Remove valores nulos
+                        .collect(Collectors.toList()))
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+    }
+
 
 }

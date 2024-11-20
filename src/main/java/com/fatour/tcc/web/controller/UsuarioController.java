@@ -1,10 +1,7 @@
 package com.fatour.tcc.web.controller;
 
 
-import com.fatour.tcc.dto.SeatDTO;
-import com.fatour.tcc.dto.UsuarioDTO;
-import com.fatour.tcc.dto.UsuarioLoginRequestDTO;
-import com.fatour.tcc.dto.UsuarioLoginResponseDTO;
+import com.fatour.tcc.dto.*;
 import com.fatour.tcc.entity.Seat;
 import com.fatour.tcc.entity.Usuario;
 import com.fatour.tcc.service.ExcursionService;
@@ -50,5 +47,10 @@ public class UsuarioController {
     @GetMapping("/{usuarioId}/seat")
     public List<Seat> findSeatByUsuarioId(@PathVariable Long usuarioId) {
         return usuarioService.findSeatByUsuarioId(usuarioId);
+    }
+
+    @GetMapping("/{usuarioId}/payments")
+    public List<UserDetailsDTO> getPaymentDetailsByUser(@PathVariable Long usuarioId) {
+        return usuarioService.getPaymentDetailsByUser(usuarioId);
     }
 }

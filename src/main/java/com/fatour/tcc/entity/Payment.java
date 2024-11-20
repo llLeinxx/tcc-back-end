@@ -28,7 +28,7 @@ public class Payment {
     private String validity;
 
     @Column(name = "name")
-    private String name;
+    private String paymentName;
 
     @ManyToOne
     private Usuario usuario;
@@ -39,13 +39,13 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(Long id, String cvv, Excursion excursion, String number, String validity, String name, Usuario usuario, LocalDateTime date) {
+    public Payment(Long id, String cvv, Excursion excursion, String number, String validity, String paymentName, Usuario usuario, LocalDateTime date) {
         this.id = id;
         this.cvv = cvv;
         this.excursion = excursion;
         this.number = number;
         this.validity = validity;
-        this.name = name;
+        this.paymentName = paymentName;
         this.usuario = usuario;
         this.date = date;
     }
@@ -90,12 +90,12 @@ public class Payment {
         this.validity = validity;
     }
 
-    public String getName() {
-        return name;
+    public String getPaymentName() {
+        return paymentName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPaymentName(String name) {
+        this.paymentName = name;
     }
 
     public Usuario getUsuario() {

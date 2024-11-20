@@ -91,6 +91,22 @@ public class Usuario {
         this.role = roleUsuario;
     }
 
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
+    }
+
+    public List<Seat> getSeats() {
+        return seats;
+    }
+
+    public void setSeats(List<Seat> seats) {
+        this.seats = seats;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
