@@ -33,10 +33,10 @@ public class Usuario {
     @Column(name = "role", nullable = false, length = 25)
     private RoleUsuario role;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Payment> payments = new ArrayList<>();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Seat> seats = new ArrayList<>();
 
