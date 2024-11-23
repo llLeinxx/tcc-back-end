@@ -30,4 +30,12 @@ public class UsuarioLoginResponseDTO {
     public String getMsg() {
         return msg;
     }
+
+    public RoleUsuario getRole() {
+        return role;
+    }
+
+    public void setRole(RoleUsuario role) {
+        this.role = role;
+    }
 }
