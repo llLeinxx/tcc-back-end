@@ -84,4 +84,52 @@ public class UsuarioService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
+    public UserModalDTO getPaymentDetails(Long userId, Long paymentId) {
+        return usuarioRepository.findById(userId)
+                .map(usuario -> {
+                    Payment payment = usuario.getPayments().stream()
+                            .filter(p -> p.getId().equals(paymentId))
+                            .findFirst()
+                            .orElseThrow(() -> new RuntimeException("Payment not found"));
+
+                    List<Seat> seats = usuario.getSeats().stream()
+                            .filter(s -> s.getId().equals(userId))
+                            .collect(Collectors.toList());
+
+                    if (seats.isEmpty()) {
+                        throw new RuntimeException("Seat not found");
+                    }
+
+                    Excursion excursion = seats.get(0).getExcursion();
+                    if (excursion == null) {
+                        throw new RuntimeException("Excursion not found");
+                    }
+
+                    List<SeatModalDTO> seatDTOs = seats.stream()
+                            .map(seat -> new SeatModalDTO(
+                                    seat.getSeatNumber(),
+                                    seat.getCpf(),
+                                    seat.getEmail(),
+                                    seat.getName(),
+                                    seat.getTelephone()
+                            ))
+                            .collect(Collectors.toList());
+
+                    return new UserModalDTO(
+                            payment.getId(),
+                            payment.getCvv(),
+                            payment.getNumber(),
+                            payment.getValidity(),
+                            payment.getPaymentName(),
+                            excursion.getDescription(),
+                            excursion.getLocation(),
+                            excursion.getGoing(),
+                            excursion.getBack(),
+                            excursion.getPrice(),
+                            seatDTOs
+                    );
+                })
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+    }
+
 }

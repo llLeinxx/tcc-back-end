@@ -53,4 +53,9 @@ public class UsuarioController {
     public List<UserDetailsDTO> getPaymentDetailsByUser(@PathVariable Long usuarioId) {
         return usuarioService.getPaymentDetailsByUser(usuarioId);
     }
+
+    @GetMapping("/{userId}/payments/{paymentId}/details")
+    public UserModalDTO getPaymentDetails(@PathVariable Long userId, @PathVariable Long paymentId) {
+        return usuarioService.getPaymentDetails(userId, paymentId);
+    }
 }
