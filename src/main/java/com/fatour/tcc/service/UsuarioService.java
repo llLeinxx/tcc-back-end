@@ -92,17 +92,18 @@ public class UsuarioService {
                             .findFirst()
                             .orElseThrow(() -> new RuntimeException("Payment not found"));
 
+                    Excursion excursion = payment.getExcursion();
+                    if (excursion == null) {
+                        throw new RuntimeException("Excursion not found");
+                    }
+
                     List<Seat> seats = usuario.getSeats().stream()
-                            .filter(s -> s.getId().equals(userId))
+                            .filter(seat -> seat.getUsuario() != null && seat.getUsuario().getId().equals(userId))
+                            .filter(seat -> seat.getExcursion() != null && seat.getExcursion().getId().equals(excursion.getId()))
                             .collect(Collectors.toList());
 
                     if (seats.isEmpty()) {
                         throw new RuntimeException("Seat not found");
-                    }
-
-                    Excursion excursion = seats.get(0).getExcursion();
-                    if (excursion == null) {
-                        throw new RuntimeException("Excursion not found");
                     }
 
                     List<SeatModalDTO> seatDTOs = seats.stream()
