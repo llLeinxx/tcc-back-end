@@ -49,10 +49,10 @@ public class UsuarioService {
         if (usuarioOptional.isPresent()) {
             Usuario usuario = usuarioOptional.get();
             if (bCryptPasswordEncoder.matches(usuarioLoginRequestDTO.getPassword(), usuario.getPassword())){
-                return new UsuarioLoginResponseDTO(usuario.getId(),"Login successfull");
+                return new UsuarioLoginResponseDTO(usuario.getId(),"Login successfull", usuario.getRole());
             }
         }
-        return new UsuarioLoginResponseDTO(null,"Login failed");
+        return new UsuarioLoginResponseDTO(null,"Login failed", null);
     }
 
     public List<Seat> findSeatByUsuarioId(Long usuarioId) {
