@@ -1,6 +1,7 @@
 package com.fatour.tcc.dto;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class UserModalDTO {
     private String number;
     private String validity;
     private String PaymentName;
+    private LocalDate date;
     //Excursion
     private String description;
     private String location;
@@ -20,18 +22,27 @@ public class UserModalDTO {
 
     private List<SeatModalDTO> seats;
 
-    public UserModalDTO(Long paymentId, String cvv, String number, String validity, String paymentName, String description, String location, LocalDateTime going, LocalDateTime back, BigDecimal price, List<SeatModalDTO> seats) {
+    public UserModalDTO(Long paymentId, String cvv, String number, String validity, String paymentName, LocalDate date, String description, String location, LocalDateTime going, LocalDateTime back, BigDecimal price, List<SeatModalDTO> seats) {
         PaymentId = paymentId;
         this.cvv = cvv;
         this.number = number;
         this.validity = validity;
         PaymentName = paymentName;
+        this.date = date;
         this.description = description;
         this.location = location;
         this.going = going;
         this.back = back;
         this.price = price;
         this.seats = seats;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public List<SeatModalDTO> getSeats() {

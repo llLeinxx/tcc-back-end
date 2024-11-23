@@ -122,6 +122,7 @@ public class UsuarioService {
                             payment.getNumber(),
                             payment.getValidity(),
                             payment.getPaymentName(),
+                            payment.getDate().toLocalDate(),
                             excursion.getDescription(),
                             excursion.getLocation(),
                             excursion.getGoing(),
