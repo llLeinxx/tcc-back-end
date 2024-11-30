@@ -16,7 +16,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/excursions")
-@CrossOrigin(origins = "https://fatour.netlify.app")
+//@CrossOrigin(origins = "https://fatour.netlify.app")
+@CrossOrigin(origins = {"http://127.0.0.1:8080", "https://fatour.netlify.app"})
 public class ExcursionController {
 
     private final ExcursionService excursionService;
